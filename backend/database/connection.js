@@ -10,9 +10,9 @@ const connections = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
-export function runDBCommand(sqlQuery) {
+export function runDBCommand(sqlQuery, params = []) {
   return new Promise((resolve, reject) => {
-    connections.query(sqlQuery, (error, result) => {
+    connections.query(sqlQuery, params, (error, result) => {
       if (error) reject(error);
       else resolve(result);
     });

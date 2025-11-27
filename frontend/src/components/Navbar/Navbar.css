@@ -1,0 +1,70 @@
+/* Navbar.css */
+.nav {
+  height: 64px;
+  padding: 0 40px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-logo {
+  font-weight: 800;
+  font-size: 22px;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-right: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #1d4ed8;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn,
+.nav-btn-outline {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.nav-btn {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.nav-btn:hover {
+  background: #1e40af;
+}
+
+.nav-btn-outline {
+  background: transparent;
+  border: 1px solid #1d4ed8;
+  color: #1d4ed8;
+}
+
+.nav-btn-outline:hover {
+  background: #eff4ff;
+}

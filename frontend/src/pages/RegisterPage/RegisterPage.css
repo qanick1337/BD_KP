@@ -1,0 +1,119 @@
+/* Загальний контейнер */
+.register-container {
+    display: flex;
+    justify-content: center;
+    /* краще вирівнювати по верху, а не по центру */
+    align-items: flex-start;
+
+    /* сторінка може бути вище за екран */
+    min-height: 100vh;
+    background: #f5f5f5;
+
+    /* відступи зверху/знизу, щоб не було "приліплено" до краю */
+    padding: 40px 0;
+    box-sizing: border-box;
+}
+
+/* Форма */
+.register-form {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 420px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.register-form h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Поля */
+.register-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.register-form input,
+.register-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    resize: none;
+}
+
+.register-form textarea {
+    height: 90px;
+}
+
+/* Кнопки */
+.register-form button {
+    padding: 12px;
+    background: #4c7ef3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+    margin-top: 5px;
+}
+
+.register-form button:hover {
+    background: #335cd1;
+}
+
+/* Блок кнопок на Step 2 */
+.register-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.register-buttons button:first-child {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.register-buttons button:first-child:hover {
+    background: #cacaca;
+}
+
+/* Нижній блок */
+.register-login-block {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-login-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.register-login-link {
+    font-size: 15px;
+    color: #467ad9;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-login-link:hover {
+    text-decoration: underline;
+}
+
+.red-text {
+    color:rgb(255, 0, 0)
+}
