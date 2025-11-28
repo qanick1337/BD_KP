@@ -25,7 +25,7 @@ export async function loginCompany(req, res) {
     }
 
     const token = jwt.sign(
-      { company_id: rows[0].company_id },
+      { company_id: rows[0].company_id, email: login_email },
       process.env.JWT_SECRET,
       { expiresIn: TOKEN_TTL }
     );

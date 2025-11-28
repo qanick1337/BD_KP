@@ -10,6 +10,9 @@ import { AuthProvider } from "./AuthProvider.jsx";
 
 import HomePage from "./pages/HomePage/HomePage.jsx";
 
+import "./index.css"
+import DashBoard from "./pages/DashBoard/DashBoard.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <AuthPage/>
+      },
+      {
+        path: "/dashboard",
+        element: <DashBoard/>
       }
     ],
   },

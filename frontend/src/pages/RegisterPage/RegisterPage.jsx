@@ -95,109 +95,174 @@ function RegisterPage() {
     };
 
     return (
-        <div className="register-container">
-            <form className="register-form" onSubmit={handleFormSubmit}>
-                <h2>Реєстрація компанії</h2>
+        <main className="bg-gray-100 min-h-[calc(100vh-64px)] flex justify-center items-start py-10 px-4">
+            <form
+                onSubmit={handleFormSubmit}
+                className="w-full max-w-md bg-white rounded-xl shadow-md px-6 py-7 flex flex-col"
+            >   
+                <div className="text-center m-10">
+                    <Link
+                        to="/"
+                        className="font-extrabold text-xl sm:text-2xl text-blue-700"
+                        >
+                        Work-like
+                    </Link>
+                </div>
+                <h2 className="text-xl font-bold text-center mb-2">
+                    Реєстрація компанії
+                </h2>
 
                 {step === 1 && (
-                    <>
-                        <h3>Загальна інформація</h3>
+                <>
+                    
+                    <h3 className="text-base font-semibold text-center text-gray-700 mb-5">
+                        Загальна інформація
+                    </h3>
 
-                        <label>Назва компанії <span className="red-text">*</span></label>
-                        <input
-                            type="text"
-                            value={companyName}
-                            placeholder="Назва компанії"
-                            onChange={(e) => setCompanyName(e.target.value)}
-                            required
-                        />
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Назва компанії <span className="text-red-500">*</span>
+                    </label>
 
-                        <label>Кількість працівників</label>
-                        <input
-                            type="number"
-                            min="0"
-                            value={numberOfEmployees}
-                            placeholder="Наприклад: 50"
-                            onChange={(e) => setNumberOfEmployees(e.target.value)}
-                        />
+                    <input
+                    type="text"
+                    value={companyName}
+                    placeholder="Назва компанії"
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    required
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
 
-                        <label>Сайт компанії</label>
-                        <input
-                            type="url"
-                            value={companySite}
-                            placeholder="https://example.com"
-                            onChange={(e) => setCompanySite(e.target.value)}
-                        />
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Кількість працівників
+                    </label>
+                    <input
+                    type="number"
+                    min="0"
+                    value={numberOfEmployees}
+                    placeholder="Наприклад: 50"
+                    onChange={(e) => setNumberOfEmployees(e.target.value)}
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
 
-                        <label>Номер телефону</label>
-                        <input
-                            type="tel"
-                            value={phoneNumber}
-                            placeholder="+380..."
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                        />
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Сайт компанії
+                    </label>
 
-                        <label>Опис компанії</label>
-                        <textarea
-                            value={companyDescription}
-                            placeholder="Коротко опишіть компанію"
-                            onChange={(e) => setCompanyDescription(e.target.value)}
-                        />
+                    <input
+                    type="url"
+                    value={companySite}
+                    placeholder="https://example.com"
+                    onChange={(e) => setCompanySite(e.target.value)}
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
 
-                        <button type="submit">Далі</button>
-                    </>
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Номер телефону
+                    </label>
+
+                    <input
+                    type="tel"
+                    value={phoneNumber}
+                    placeholder="+380..."
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Опис компанії
+                    </label>
+
+                    <textarea
+                    value={companyDescription}
+                    placeholder="Коротко опишіть компанію"
+                    onChange={(e) => setCompanyDescription(e.target.value)}
+                    className="mb-4 w-full rounded-md border border-gray-300 px-3 py-2 text-sm h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+
+                    <button
+                    type="submit"
+                    className="mt-1 w-full rounded-md bg-blue-600 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition"
+                    >
+                        Далі
+                    </button>
+                </>
                 )}
 
                 {step === 2 && (
-                    <>
-                        <h3>Дані для входу</h3>
+                <>
+                    <h3 className="text-base font-semibold text-center text-gray-700 mb-5">
+                        Дані для входу
+                    </h3>
 
-                        <label>Email для входу <span className="red-text">*</span></label>
-                        <input
-                            type="email"
-                            value={login_email}
-                            placeholder="example@gmail.com"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Email для входу <span className="text-red-500">*</span>
+                    </label>
 
-                        <label>Пароль <span className="red-text">*</span></label>
-                        <input
-                            type="password"
-                            value={password}
-                            placeholder="Введіть пароль"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
+                    <input
+                    type="email"
+                    value={login_email}
+                    placeholder="example@gmail.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
 
-                        <label>Підтвердження пароля <span className="red-text">*</span></label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            placeholder="Повторіть пароль"
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Пароль <span className="text-red-500">*</span>
+                    </label>
 
-                        <div className="register-buttons">
-                            <button type="button" onClick={handlePrevStep}>
-                                ‹ Назад
-                            </button>
-                            <button type="submit">
-                                Зареєструватися
-                            </button>
-                        </div>
-                    </>
+                    <input
+                    type="password"
+                    value={password}
+                    placeholder="Введіть пароль"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+
+                    <label className="mb-1 text-sm font-medium text-gray-700">
+                        Підтвердження пароля <span className="text-red-500">*</span>
+                    </label>
+                    
+                    <input
+                    type="password"
+                    value={confirmPassword}
+                    placeholder="Повторіть пароль"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                    className="mb-4 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+
+                    <div className="flex gap-3 mt-1">
+                    <button
+                        type="button"
+                        onClick={handlePrevStep}
+                        className="w-1/2 rounded-md bg-gray-200 py-2.5 text-sm font-semibold text-gray-800 hover:bg-gray-300 transition"
+                    >
+                        ‹ Назад
+                    </button>
+
+                    <button
+                        type="submit"
+                        className="w-1/2 rounded-md bg-blue-600 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition"
+                    >
+                        Зареєструватися
+                    </button>
+                    </div>
+                </>
                 )}
 
-                <div className="register-login-block">
-                    <p className="register-login-text">Вже з нами?</p>
-                    <Link to="/login" className="register-login-link">
-                        Увійти як роботодавець&nbsp;›
-                    </Link>
+                <div className="mt-5 text-center">
+                <p className="text-xs text-gray-600 mb-1">Вже з нами?</p>
+                <Link
+                    to="/login"
+                    className="text-sm font-medium text-blue-600 hover:underline"
+                >
+                    Увійти як роботодавець&nbsp;›
+                </Link>
                 </div>
             </form>
-        </div>
+        </main>
     );
 }
 
