@@ -12,6 +12,11 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 
 import "./index.css"
 import DashBoard from "./pages/DashBoard/DashBoard.jsx";
+import VacanciesPage from "./pages/VacanciesPage/VacanciesPage.jsx";
+import UsersPage from "./pages/UsersPage/UsersPage.jsx";
+import EditUserPage from "./pages/EditUserPage/EditUserPage.jsx";
+import NewUserPage from "./pages/NewUserPage/NewUserPage.jsx";
+import CreateVacancy from "./pages/CreateVacancy/CreateVacancy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +38,26 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashBoard/>
+      },
+      {
+        path: "/vacancies",
+        element: <VacanciesPage/>
+      },
+      {
+        path: "/users",
+        element: <UsersPage/>
+      },
+      {
+        path: "/users/new",
+        element: <NewUserPage/>
+      },
+      {
+        path: "/users/:id",
+        element: <EditUserPage/>
+      },
+      {
+        path: "/create_vacancy",
+        element: <CreateVacancy/>
       }
     ],
   },

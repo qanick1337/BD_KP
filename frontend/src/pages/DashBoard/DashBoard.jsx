@@ -3,10 +3,12 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../AuthProvider";
 
 import "./DashBoard.css";
+import { Link } from "react-router";
 
 function DashBoard() {
     const { token, email } = useAuth();
     const [company_name, setCompanyName] = useState("");
+    const [adminStatus, setAdminStatus] = useState(false);
     const [loading, setLoading] = useState(true);
     const [accessDenied, setAccessDenied] = useState(false);
 
@@ -18,6 +20,7 @@ function DashBoard() {
         }
         
         getCompanyName();
+        getAdminStatus();
     }, [email, token]);
 
     async function getCompanyName() {
@@ -50,6 +53,32 @@ function DashBoard() {
         }
     }
 
+    async function getAdminStatus() {
+        try {
+        const response = await fetch("http://localhost:3000/users/is-admin", {
+            method: "GET",
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            setLoading(false);
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        setAdminStatus(data.isAdmin)
+        setLoading(false);
+        } catch (err) {
+        console.log(err);
+        }
+    }
     if (accessDenied) {
         return (
         <>
@@ -108,14 +137,31 @@ function DashBoard() {
             </h2>
 
             <div className="flex flex-wrap gap-4">
-                {["Вакансії", "Кандидати", "Користувачі"].map((item) => (
-                <div
-                    key={item}
-                    className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium"
+                <Link
+                    to="/vacancies"
                 >
-                    {item}
-                </div>
-                ))}
+                    <div>
+                        <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium" >Вакансії</p>
+                    </div>
+                </Link>
+
+                 <Link
+                    to=""
+                >
+                    <div>
+                        <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium" >Кандидати</p>
+                    </div>
+                </Link>
+
+                {adminStatus && (
+                    <Link to="/users">
+                        <div>
+                        <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium">
+                            Користувачі
+                        </p>
+                        </div>
+                    </Link>
+                )}
             </div>
             </section>
         </main>

@@ -22,7 +22,7 @@ function HomePage(){
                         </p>
 
                         {/* Блок пошуку*/}
-                        <div className="bg-white rounded-xl p-2 flex flex-col sm:flex-row gap-2  shadow-md md:rounded-full">
+                        {/* <div className="bg-white rounded-xl p-2 flex flex-col sm:flex-row gap-2  shadow-md md:rounded-full">
                             <input
                                 type="text"
                                 placeholder="Посада"
@@ -37,7 +37,7 @@ function HomePage(){
                             <button className="bg-blue-700 hover:bg-pink-600 transition text-white font-semibold px-6 py-2 rounded-full">
                                 Знайти кандидатів
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
 

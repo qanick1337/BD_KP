@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../AuthProvider";
 
 function Navbar() {
-  const { isAuthenticated, logout, email } = useAuth();
+  const { isAuthenticated, logout, email, token } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [adminStatus, setAdminStatus] = useState(false);
+
+    useEffect(() => {
+          getAdminStatus();
+      }, [email]);
+
 
   const handleLogout = () => {
     logout();
@@ -16,6 +22,31 @@ function Navbar() {
   const handleNavClick = () => {
     setOpen(false);
   };
+
+  async function getAdminStatus() {
+        try {
+        const response = await fetch("http://localhost:3000/users/is-admin", {
+            method: "GET",
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401) {
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        setAdminStatus(data.isAdmin)
+        } catch (err) {
+        console.log(err);
+        }
+    }  
 
   return (
     <header className="sticky top-0 z-20 border-b bg-white">
@@ -30,20 +61,26 @@ function Navbar() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 text-gray-700 font-medium">
-            <Link
-              to=""
-              className="hover:text-blue-700 transition"
-              onClick={handleNavClick}
-            >
-              Знайти кандидатів
-            </Link>
-            <Link
-              to=""
-              className="hover:text-blue-700 transition"
-              onClick={handleNavClick}
-            >
-              Створити вакансію
-            </Link>
+            
+            {!adminStatus && (
+              <>
+              <Link
+                to=""
+                className="hover:text-blue-700 transition"
+                onClick={handleNavClick}
+              >
+                Знайти кандидатів
+              </Link>                
+              <Link
+                to="/create_vacancy"
+                className="hover:text-blue-700 transition"
+                onClick={handleNavClick}
+              >
+                Створити вакансію
+              </Link>
+              </>
+            )}
+
           </nav>
         </div>
 

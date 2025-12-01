@@ -10,8 +10,15 @@ export async function loginCompany(req, res) {
   console.log("BODY:", req.body);
   console.log("email:", login_email);
   try {
-    const rows = await runDBCommand("SELECT company_id, password FROM company_auth WHERE login_email = ?", [login_email]);
+    let rows = await runDBCommand("SELECT company_id, password FROM company_auth WHERE login_email = ?", [login_email]);
     console.log(rows[0]);
+
+    if (!rows.length) {
+      rows = await runDBCommand(
+        "SELECT company_id, user_email AS login_email, password, company_user_id FROM company_user WHERE user_email = ?",
+        [login_email]
+      );
+    }
 
     if (!rows.length) {
       return res.status(401).json({ message: "Даних з таким e-mail не знайдено!" });

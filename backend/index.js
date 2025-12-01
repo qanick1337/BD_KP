@@ -4,6 +4,9 @@ import testRoutes from "./routes/testRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import registerRoutes from "./routes/registerRoutes.js"
 import dashboardRoutes from "./routes/dashboardRoutes.js"
+import usersRoutes from "./routes/usersRoutes.js";
+import dictRoutes from "./routes/dictRoutes.js";
+import vacancyRoutes from "./routes/vacancyRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -13,6 +16,9 @@ app.use("/tests", testRoutes);
 app.use("/login", authRoutes);
 app.use("/register", registerRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/users", usersRoutes);
+app.use("/dict", dictRoutes);
+app.use("/vacancies", vacancyRoutes);
 
 app.listen(3000, () => {
   console.log("Port 3000, application started");
