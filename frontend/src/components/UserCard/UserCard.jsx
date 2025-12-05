@@ -27,7 +27,7 @@ function UserCard({ user, onClick, onClickBtn }) {
         className="bg-red-600 hover:bg-orange-700 text-white text-sm font-semibold px-4 py-2 rounded-md mt-2 sm:mt-0"
         onClick={(e) => {
           e.stopPropagation();  
-          (onClickBtn)
+          (onClickBtn())
         }}
       >
         Видалити

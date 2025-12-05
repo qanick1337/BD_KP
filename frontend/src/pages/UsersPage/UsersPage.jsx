@@ -79,7 +79,6 @@ function UsersPage() {
         throw new Error(data?.message || "Не вдалося видалити користувача");
       }
 
-      // При успішному видаленні – прибираємо з стану
       setUsers((prev) => prev.filter((u) => u.company_user_id !== id));
     } catch (err) {
       console.error(err);

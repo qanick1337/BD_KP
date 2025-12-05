@@ -158,22 +158,22 @@ function CreateVacancyPage() {
   };
 
     async function fetchUserId() {
-    try {
-        const res = await fetch("http://localhost:3000/users/me", {
-        headers: authHeaders,
-        });
+      try {
+          const res = await fetch("http://localhost:3000/users/me", {
+          headers: authHeaders,
+          });
 
-        const data = await res.json();
+          const data = await res.json();
 
-        if (!res.ok) {
-            throw new Error(data?.message || "Failed to load user info");
-        }
+          if (!res.ok) {
+              throw new Error(data?.message || "Failed to load user info");
+          }
 
-        setCompanyUserID(data.company_user_id);
-    } catch (err) {
-        console.error(err);
-        setError(err.message);
-    }
+          setCompanyUserID(data.company_user_id);
+      } catch (err) {
+          console.error(err);
+          setError(err.message);
+      }
     }
 
 
@@ -244,11 +244,11 @@ function CreateVacancyPage() {
     e.preventDefault();
 
     if (!form.title.trim() || !form.city_id || !form.description.trim()) {
-      setError("Required fields: title, city, description.");
+      setError("Необхідні поля: назва вакансії, місто, опис.");
       return;
     }
     if (selectedCategoryIds.length === 0) {
-      setError("Select at least one category.");
+      setError("Виберіть хоча б одну категорію.");
       return;
     }
 
@@ -293,7 +293,7 @@ function CreateVacancyPage() {
 
       alert("Вакансія успішно додана!");
       setSaving(false);
-    //   navigate("/vacancies");
+      navigate("/vacancies");
     } catch (err) {
       console.error(err);
       setError(err.message);

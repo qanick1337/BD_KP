@@ -146,7 +146,7 @@ function DashBoard() {
                 </Link>
 
                  <Link
-                    to=""
+                    to="/candidates"
                 >
                     <div>
                         <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium" >Кандидати</p>
@@ -158,6 +158,16 @@ function DashBoard() {
                         <div>
                         <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium">
                             Користувачі
+                        </p>
+                        </div>
+                    </Link>
+                )}
+
+                {adminStatus && (
+                    <Link to="/company_stats">
+                        <div>
+                        <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium">
+                            Статистика компанії
                         </p>
                         </div>
                     </Link>

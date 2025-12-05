@@ -7,6 +7,9 @@ import dashboardRoutes from "./routes/dashboardRoutes.js"
 import usersRoutes from "./routes/usersRoutes.js";
 import dictRoutes from "./routes/dictRoutes.js";
 import vacancyRoutes from "./routes/vacancyRoutes.js";
+import candidatesRoutes from "./routes/candidateRoutes.js"
+import applicationRoutes from "./routes/applicationRoutes.js"
+import statsRoutes from "./routes/statsRoutes.js"
 
 const app = express();
 app.use(cors());
@@ -19,6 +22,11 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/users", usersRoutes);
 app.use("/dict", dictRoutes);
 app.use("/vacancies", vacancyRoutes);
+app.use("/candidates", candidatesRoutes);
+app.use("/application", applicationRoutes);
+app.use("/stats", statsRoutes);
+
+
 
 app.listen(3000, () => {
   console.log("Port 3000, application started");

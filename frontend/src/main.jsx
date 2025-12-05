@@ -17,6 +17,10 @@ import UsersPage from "./pages/UsersPage/UsersPage.jsx";
 import EditUserPage from "./pages/EditUserPage/EditUserPage.jsx";
 import NewUserPage from "./pages/NewUserPage/NewUserPage.jsx";
 import CreateVacancy from "./pages/CreateVacancy/CreateVacancy.jsx";
+import EditVacancyPage from "./pages/EditVacancyPage/EditVacancyPage.jsx";
+import CandidatesPage from "./pages/CandidatesPage/CandidatesPage.jsx";
+import CandidatePage from "./pages/CandidatePage/CandidatePage.jsx";
+import NewApplicationForm from "./pages/NewApplication/NewApplication.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +62,22 @@ const router = createBrowserRouter([
       {
         path: "/create_vacancy",
         element: <CreateVacancy/>
+      },
+      {
+        path: "/vacancies/:id",
+        element: <EditVacancyPage/>
+      },
+      {
+        path: "/candidates",
+        element: <CandidatesPage/>
+      },
+      {
+        path: "/candidates/:id",
+        element: <CandidatePage/>
+      },
+      {
+        path: "/application/:candidate_id",
+        element: <NewApplicationForm/>
       }
     ],
   },
