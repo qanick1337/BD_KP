@@ -8,10 +8,9 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [adminStatus, setAdminStatus] = useState(false);
 
-    useEffect(() => {
-          getAdminStatus();
-      }, [email]);
-
+  useEffect(() => {
+    getAdminStatus();
+  }, [email]);
 
   const handleLogout = () => {
     logout();
@@ -24,29 +23,29 @@ function Navbar() {
   };
 
   async function getAdminStatus() {
-        try {
-        const response = await fetch("http://localhost:3000/users/is-admin", {
-            method: "GET",
-            headers: {
-            Authorization: `Bearer ${token}`,
-            },
-        });
+    try {
+      const response = await fetch("http://localhost:3000/users/is-admin", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (response.status === 401) {
-            return;
-        }
+      if (response.status === 401) {
+        return;
+      }
 
-        if (!response.ok) {
-            throw new Error(data.message);
-        }
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
 
-        setAdminStatus(data.isAdmin)
-        } catch (err) {
-        console.log(err);
-        }
-    }  
+      setAdminStatus(data.isAdmin);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <header className="sticky top-0 z-20 border-b bg-white">
@@ -57,39 +56,40 @@ function Navbar() {
             className="font-extrabold text-xl sm:text-2xl text-blue-700"
             onClick={handleNavClick}
           >
-              Work-like
+            Work-like
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 text-gray-700 font-medium">
-            
+            <Link
+              to="/vacancies"
+              className="hover:text-blue-700 transition"
+              onClick={handleNavClick}
+            >
+              Вакансії
+            </Link>
+            <Link
+              to="/applications"
+              className="hover:text-blue-700 transition"
+              onClick={handleNavClick}
+            >
+              Подання
+            </Link>
             {!adminStatus && (
-              <>
-              <Link
-                to=""
-                className="hover:text-blue-700 transition"
-                onClick={handleNavClick}
-              >
-                Знайти кандидатів
-              </Link>                
               <Link
                 to="/create_vacancy"
                 className="hover:text-blue-700 transition"
                 onClick={handleNavClick}
               >
-                Створити вакансію
+                Додати вакансію
               </Link>
-              </>
             )}
-
           </nav>
         </div>
 
         <div className="hidden md:flex items-center gap-3">
           {isAuthenticated ? (
             <>
-              <Link
-                to="/dashboard"
-              >
+              <Link to="/dashboard">
                 <span className="px-4 py-2 rounded-full border border-blue-600 text-blue-700 font-semibold max-w-[220px] truncate">
                   {email}
                 </span>
@@ -111,19 +111,15 @@ function Navbar() {
                 Зареєструватися
               </Link>
 
-              <Link
-                to="/login"
-                className="px-4 py-2 rounded-full bg-blue-700 text-white font-semibold hover:bg-blue-800 transition"
-              >
-                Увійти
-              </Link>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 rounded-full bg-blue-700 text-white font-semibold hover:bg-blue-800 transition"
+                >
+                  Увійти
+                </Link>
             </>
           )}
         </div>
-
-
-
-        {/* Мобільне меню */}
 
         <button
           className="flex flex-col items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden"
@@ -133,28 +129,34 @@ function Navbar() {
           <span className="block w-6 h-0.5 bg-current mb-1"></span>
           <span className="block w-6 h-0.5 bg-current"></span>
         </button>
-
-
-        
       </div>
 
       {open && (
         <div className="md:hidden bg-white">
           <nav className="flex flex-col gap-2 px-4 py-3 text-gray-700 font-medium">
             <Link
-              to=""
+              to="/vacancies"
               className="py-1 hover:text-blue-700 transition"
               onClick={handleNavClick}
             >
-              Знайти кандидатів
+              Вакансії
             </Link>
             <Link
-              to=""
+              to="/applications"
               className="py-1 hover:text-blue-700 transition"
               onClick={handleNavClick}
             >
-              Створити вакансію
+              Подання
             </Link>
+            {!adminStatus && (
+              <Link
+                to="/create_vacancy"
+                className="py-1 hover:text-blue-700 transition"
+                onClick={handleNavClick}
+              >
+                Додати вакансію
+              </Link>
+            )}
           </nav>
 
           <div className="flex flex-col gap-2  px-4 py-3">

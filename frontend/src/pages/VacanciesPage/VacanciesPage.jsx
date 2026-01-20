@@ -148,7 +148,7 @@ function VacanciesPage() {
   }
 
   async function handleDeleteUser(id) {
-    const confirmed = window.confirm("Видалити цю вакансію?");
+    const confirmed = window.confirm("Видалити цю вакансію? Усі прив'язані поданні будуть видалені");
     if (!confirmed) return;
 
     try {
@@ -220,7 +220,7 @@ function VacanciesPage() {
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter((v) =>
-        ((v.title || "") + " " + (v.description || "")).toLowerCase().includes(q)
+        ((v.title || "") + " ").toLowerCase().includes(q)
       );
     }
 

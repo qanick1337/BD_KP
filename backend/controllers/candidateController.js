@@ -67,20 +67,6 @@ export async function getCandidateById(req,res) {
     res.status(500).json({ message: "Помилка сервера при отриманні кандидата" });
   }
 }
-export async function getCandidateExpiriences(req,res) {
-  try {
-    const rows = await runDBCommand(
-      `
-      
-      `
-    );
-
-    res.json(rows);
-  } catch (err) {
-    console.error("Помилка отримання досвідів кандидатів:", err);
-    res.status(500).json({ message: "Помилка сервера при отриманні досвідів кандидата" });
-  }
-}
 
 export async function getExpiriencesByCandidateId(req,res) {
   const {candidate_id} = req.params;

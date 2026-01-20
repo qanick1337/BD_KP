@@ -10,6 +10,7 @@ import vacancyRoutes from "./routes/vacancyRoutes.js";
 import candidatesRoutes from "./routes/candidateRoutes.js"
 import applicationRoutes from "./routes/applicationRoutes.js"
 import statsRoutes from "./routes/statsRoutes.js"
+import reportRoutes from "./routes/reportRoutes.js"
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,7 @@ app.use("/vacancies", vacancyRoutes);
 app.use("/candidates", candidatesRoutes);
 app.use("/application", applicationRoutes);
 app.use("/stats", statsRoutes);
+app.use("/report", reportRoutes);
 
 
 

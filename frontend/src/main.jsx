@@ -21,6 +21,8 @@ import EditVacancyPage from "./pages/EditVacancyPage/EditVacancyPage.jsx";
 import CandidatesPage from "./pages/CandidatesPage/CandidatesPage.jsx";
 import CandidatePage from "./pages/CandidatePage/CandidatePage.jsx";
 import NewApplicationForm from "./pages/NewApplication/NewApplication.jsx";
+import ApplicationsPage from "./pages/ApplicationsPage/ApplicationsPage.jsx";
+import CompanyStatsPage from "./pages/CompanyStatsPage/CompanyStatsPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -76,8 +78,16 @@ const router = createBrowserRouter([
         element: <CandidatePage/>
       },
       {
+        path: "/applications",
+        element: <ApplicationsPage/>
+      },
+      {
         path: "/application/:candidate_id",
         element: <NewApplicationForm/>
+      },
+      {
+        path: "/stats",
+        element: <CompanyStatsPage/>
       }
     ],
   },

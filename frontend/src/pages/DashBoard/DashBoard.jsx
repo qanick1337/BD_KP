@@ -164,7 +164,7 @@ function DashBoard() {
                 )}
 
                 {adminStatus && (
-                    <Link to="/company_stats">
+                    <Link to="/stats">
                         <div>
                         <p className="bg-white px-6 py-4 rounded-xl shadow-sm min-w-[130px] text-center text-gray-800 font-medium">
                             Статистика компанії

@@ -32,7 +32,6 @@ function CandidatePage() {
         setLoading(true);
         setError(null);
 
-        // тягнемо кандидата, досвід і навички паралельно
         const [candRes, expRes, skillsRes] = await Promise.all([
           fetch(`http://localhost:3000/candidates/${id}`, {
             headers: authHeaders,
@@ -169,6 +168,40 @@ function CandidatePage() {
     }
   };
 
+  // 🔹 Завантаження PDF
+  const handleDownloadPdf = async () => {
+    if (!candidate?.candidate_id) return;
+
+    try {
+      const res = await fetch(
+        `http://localhost:3000/report/${candidate.candidate_id}/pdf`,
+        {
+          method: "GET",
+          headers: {
+            ...authHeaders,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Не вдалося завантажити PDF-звіт");
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `candidate_${candidate.candidate_id}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Сталася помилка при завантаженні PDF");
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -229,7 +262,7 @@ function CandidatePage() {
         )}
 
         {!loading && !error && candidate && (
-          <> 
+          <>
             <article className="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 flex flex-col gap-4">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div>
@@ -309,7 +342,7 @@ function CandidatePage() {
                   </div>
                 )}
               </div>
-              
+
               <div className="grid gap-4 sm:grid-cols-2 border-t border-gray-100 pt-4">
                 <div className="flex flex-col gap-1 text-sm text-gray-800">
                   <h2 className="font-semibold text-gray-900 mb-1">
@@ -392,18 +425,28 @@ function CandidatePage() {
                 </div>
               </div>
             </article>
-            <button
-              className="content-center bg-cyan-400 hover:bg-cyan-600 text-white text-sm font-semibold px-4 py-2 rounded-md mt-1 w-280"
-              onClick={() =>
-                navigate(`/application/${candidate.candidate_id}`, {
-                  state: {
-                    candidate,       
-                  },
-                })
-              }
-            >
-              Закріпити до вакансії
-            </button>
+
+            <div className="flex flex-wrap gap-3 mt-3">
+              <button
+                className="content-center bg-cyan-400 hover:bg-cyan-600 text-white text-sm font-semibold px-4 py-2 rounded-md w-280"
+                onClick={() =>
+                  navigate(`/application/${candidate.candidate_id}`, {
+                    state: {
+                      candidate,
+                    },
+                  })
+                }
+              >
+                ➕ Закріпити до вакансії
+              </button>
+
+              <button
+                className="content-center bg-slate-700 hover:bg-slate-900 text-white text-sm font-semibold px-4 py-2 rounded-md w-280"
+                onClick={handleDownloadPdf}
+              >
+                🖨️ Завантажити як PDF
+              </button>
+            </div>
           </>
         )}
       </div>
